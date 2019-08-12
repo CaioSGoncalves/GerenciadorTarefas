@@ -1,0 +1,28 @@
+backend:
+    yarn init -y
+
+    yarn add express
+    
+    yarn add nodemon -D
+    file package.json:
+        "scripts":{
+            "dev": "nodemon src/server.js"
+        },
+    yarn dev
+
+    yarn add sequelize
+
+    yarn add cors
+
+    INDEX SHOW STORE UPDATE DELETE
+
+frontend:
+    yarn create react-app frontend
+
+    yarn add react-router-dom
+
+    yarn add axios
+    
+    
+    
+
