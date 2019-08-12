@@ -17,7 +17,7 @@ backend:
     INDEX SHOW STORE UPDATE DELETE
 
 frontend:
-    yarn create react-app frontend
+    yarn create react-app web
 
     yarn add react-router-dom
 
