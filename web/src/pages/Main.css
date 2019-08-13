@@ -1,34 +1,59 @@
 .main-container {
-    max-width: 980px;
-    margin: 0 auto;
     padding: 50px 0;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.main-container .lista {
+    min-height: 100px;
+    max-height: 800px;
+    overflow-y: auto;
+    width: 40%;
+}
+
+.main-container .lista h1{
+    text-align: center;
 }
 
 .main-container .lista ul {
     list-style: none;
-    margin-top: 50px;
     display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding: 0;
+    flex-direction: column-reverse;
+    padding-left: 0px;
+    align-items: center;
 }
 
-.main-container .lista li {  
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 2px solid gray;
-    height: 50px;
-    display: inherit;
+.main-container .lista .item {
+    border: 1px solid black;
     border-radius: 4px;
+    border: 2px solid gray;
+    width: 80%;
+    text-align: left;
+    margin: 4%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
 }
 
-.main-container .lista strong {
-    margin: auto auto auto 32px;
+.main-container .lista .item strong {
+    margin-left: 2%;
 }
 
 .main-container .cadastro {
+    min-height: 100px;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.main-container .cadastro h1 {
     text-align: center;
 }
 
@@ -65,3 +90,8 @@
     color: #FFF;
     cursor: pointer;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
+

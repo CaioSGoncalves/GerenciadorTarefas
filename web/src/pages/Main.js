@@ -43,7 +43,9 @@ export default function Main() {
                 { tasks.length > 0 ? (
                     <ul>
                     {tasks.map(task => (
-                        <li onClick={handleRowClick} key={task.id}>
+                        
+                        <div className="item" key={task.id} onClick={handleRowClick}>
+                            {/* <li onClick={handleRowClick}> */}
                             {/* <img src={task.avatar} alt="" /> */}
                             <strong>{task.titulo}</strong>
 
@@ -55,7 +57,8 @@ export default function Main() {
                                     <img src={like} alt="Like" />
                                 </button>
                             </div>      */}
-                        </li>
+                        {/* </li> */}
+                        </div>
                     ))}
                     </ul>
                 ) : (
