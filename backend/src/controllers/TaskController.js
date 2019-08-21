@@ -23,6 +23,8 @@ module.exports = {
             titulo,
             completada: false,
          });
+
+        req.io.sockets.emit('update');
         return res.json(task);
     },
 
@@ -31,6 +33,8 @@ module.exports = {
         const task = await Task.findByPk(id);
         task.completada = true;
         await task.save();
+
+        req.io.sockets.emit('update');
         return res.json(task);
     },
 

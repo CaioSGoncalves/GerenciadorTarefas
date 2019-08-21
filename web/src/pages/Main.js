@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 import './Main.css';
 
 import api from '../services/api';
@@ -9,17 +10,29 @@ export default function Main() {
 
     useEffect(() => {
         async function loadTasks() {
-            const response = await api.get('/tarefas', {
-                headers: {
-                    todas: true,
-                }
-            });
+            // const response = await api.get('/tarefas', {
+            //     headers: {
+            //         todas: true,
+            //     }
+            // });
+            const response = await api.get('/tarefas');
 
             setTasks(response.data);
-            console.log(response.data);
         }
         loadTasks();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+
+        async function handleSocket() {
+            const socket = io('http://localhost:3333');
+            socket.on('update', async () => {
+                const response = await api.get('/tarefas');
+                setTasks(response.data);
+            });
+        }
+        handleSocket();
+    }, []);
 
     async function handleCadastroTask(e) {
         e.preventDefault();
@@ -28,7 +41,6 @@ export default function Main() {
             titulo,
         });
         alert("Tarefa criada com sucesso!")
-        console.log(response.data);
     }
 
     async function handleRowClick(e) {
