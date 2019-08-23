@@ -10,12 +10,12 @@ export default function Main() {
 
     useEffect(() => {
         async function loadTasks() {
-            // const response = await api.get('/tarefas', {
-            //     headers: {
-            //         todas: true,
-            //     }
-            // });
-            const response = await api.get('/tarefas');
+            const response = await api.get('/tarefas', {
+                headers: {
+                    todas: true,
+                }
+            });
+            // const response = await api.get('/tarefas');
 
             setTasks(response.data);
         }
@@ -37,15 +37,22 @@ export default function Main() {
     async function handleCadastroTask(e) {
         e.preventDefault();
 
-        const response = await api.post('/tarefas', {
+        await api.post('/tarefas', {
             titulo,
         });
         alert("Tarefa criada com sucesso!")
     }
 
     async function handleRowClick(e) {
-        e.preventDefault();
-        console.log("CLickou");
+        const photo = e.target;
+
+        if (photo.style.height === "36px" || photo.style.height === "") {
+            photo.style.height = "288px";
+            photo.style.width = "288px";
+        } else {
+            photo.style.height = "36px";
+            photo.style.width = "36px";
+        }
     }
 
     return (
@@ -56,20 +63,10 @@ export default function Main() {
                     <ul>
                     {tasks.map(task => (
                         
-                        <div className="item" key={task.id} onClick={handleRowClick}>
-                            {/* <li onClick={handleRowClick}> */}
-                            {/* <img src={task.avatar} alt="" /> */}
-                            <strong>{task.titulo}</strong>
-
-                            {/* <div className="buttons">
-                                <button type="button" onClick={() => handleDislike(user._id)}>
-                                    <img src={dislike} alt="Dislike" />
-                                </button>
-                                <button type="button" onClick={() => handleLike(user._id)}>
-                                    <img src={like} alt="Like" />
-                                </button>
-                            </div>      */}
-                        {/* </li> */}
+                        <div className="item" key={task.id}>
+                            { task.completada ?  <strong style={{textDecoration: "line-through"}}>{task.titulo}</strong> : <strong>{task.titulo}</strong>}
+                            {/* <strong>{task.titulo}</strong> */}
+                            <div className="photo" style={{backgroundImage: `url(${task.image_url})`}} onClick={handleRowClick} />
                         </div>
                     ))}
                     </ul>
