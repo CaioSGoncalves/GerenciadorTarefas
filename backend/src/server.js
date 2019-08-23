@@ -1,9 +1,20 @@
-const express = require('express');
-const cors = require('cors');
+require('dotenv').config();
 
+const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
+const cors = require('cors');
 const routes = require('./routes');
 
+
+db = require('./config/database');
+db.authenticate()
+.then(() => console.log('Database Connected!'))
+.catch(err => console.log('Error: ' + err));
+
+
 const app = express();
+
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
@@ -20,6 +31,14 @@ app.use((req, res, next) => {
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+
+app.use(
+    '/files', 
+    express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+);
 app.use(routes);
 
-server.listen(3333);
+const PORT = process.env.PORT || 3333;
+server.listen(PORT, console.log(`Server started on port ${PORT}`));

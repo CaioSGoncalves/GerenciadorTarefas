@@ -29,9 +29,12 @@ module.exports = {
     },
 
     async update(req, res) {
-        const { id } = req.body;
+        const { id } = req.params;
+        const { location: url = '' } = req.file;
+        
         const task = await Task.findByPk(id);
         task.completada = true;
+        task.image_url = url;
         await task.save();
 
         req.io.sockets.emit('update');
