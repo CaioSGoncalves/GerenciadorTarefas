@@ -6,6 +6,7 @@ import api from '../services/api';
 
 export default function Main() {
     const [ tasks, setTasks ] = useState([]);
+    const [ reload, setReload ] = useState([true]);
     const [ titulo, setTitulo ] = useState([]);
 
     useEffect(() => {
@@ -15,20 +16,20 @@ export default function Main() {
                     todas: true,
                 }
             });
-            // const response = await api.get('/tarefas');
-
             setTasks(response.data);
+            setReload(false);
         }
         loadTasks();
-    }, []);
+    }, [reload]);
 
     useEffect(() => {
 
         async function handleSocket() {
             const socket = io('http://localhost:3333');
             socket.on('update', async () => {
-                const response = await api.get('/tarefas');
-                setTasks(response.data);
+                // const response = await api.get('/tarefas');
+                // setTasks(response.data);
+                setReload(true);
             });
         }
         handleSocket();
@@ -65,15 +66,14 @@ export default function Main() {
                         
                         <div className="item" key={task.id}>
                             { task.completada ?  <strong style={{textDecoration: "line-through"}}>{task.titulo}</strong> : <strong>{task.titulo}</strong>}
-                            {/* <strong>{task.titulo}</strong> */}
-                            <div className="photo" style={{backgroundImage: `url(${task.image_url})`}} onClick={handleRowClick} />
+                            { task.completada && 
+                                <div className="photo" style={{backgroundImage: `url(${task.image_url})`}} onClick={handleRowClick} />}                            
                         </div>
                     ))}
                     </ul>
                 ) : (
                     <div className="empty">Acabou :)</div>
                 )}
-                
             </div>
 
             <div className="cadastro">

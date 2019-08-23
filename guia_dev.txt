@@ -14,6 +14,9 @@ backend:
 
     yarn add cors
 
+    yarn add socket.io
+
+
     INDEX SHOW STORE UPDATE DELETE
 
 frontend-web:
@@ -30,7 +33,26 @@ mobile:
 
     adb reverse tcp:3333 tcp:3333
 
-yarn add socket.io
+    yarn add react-native-camera
+
+    react-native link react-native-camera
+
+        "For those who have this problem, the solution that I found is setting classpath 3.3.0 and Gradle 4.10.1 as already mentioned, to do this I changed the class path in android/build.gradle in dependencies tag now is like this classpath 'com.android.tools.build:gradle:3.3.0' and changed the gradle version in android/gradle/wrapper/gradle-wrapper.properties to this
+
+        distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip
+
+        and in the android/app/build.gradle I added this
+
+        missingDimensionStrategy 'react-native-camera', 'general' in defaultConfig
+
+        And i also added these two lines
+
+        maven { url "https://jitpack.io" } 
+        maven { url "https://maven.google.com" } 
+        in repositories tag of android/build.gradle
+
+        And then I could use the camera normally"
+
 yarn add socket.io-client
 
     

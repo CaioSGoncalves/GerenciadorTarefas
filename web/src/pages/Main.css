@@ -15,10 +15,10 @@ body{
 }
 
 .main-container .lista {
-    min-height: 100px;
-    max-height: 800px;
+    height: 600px;
     overflow-y: auto;
     width: 40%;
+    
 }
 
 .main-container .lista .empty {
@@ -115,7 +115,7 @@ body{
     border-radius: 4px;
     height: 48px;
     font-size: 16px;
-    background: grey;
+    background: #569C75;
     font-weight: bold;
     color: #FFF;
     cursor: pointer;

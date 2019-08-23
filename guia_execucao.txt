@@ -1,3 +1,14 @@
 backend:
     yarn install
     yarn start
+
+web:
+    yarn install
+    yarn start
+
+mobile:
+    yarn install
+
+    react-native link react-native-camera
+
+    yarn react-native run-android
