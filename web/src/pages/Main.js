@@ -25,7 +25,7 @@ export default function Main() {
     useEffect(() => {
 
         async function handleSocket() {
-            const socket = io('http://localhost:3333');
+            const socket = io('http://192.168.99.100:3000');
             socket.on('update', async () => {
                 // const response = await api.get('/tarefas');
                 // setTasks(response.data);

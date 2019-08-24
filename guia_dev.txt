@@ -55,6 +55,7 @@ mobile:
 
 yarn add socket.io-client
 
+"crypto": "^1.0.1",
     
     
     

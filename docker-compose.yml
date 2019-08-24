@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+    backend:
+        container_name: "backend"
+        build: ./backend
+        ports:
+            - "3000:3000"
+        # volumes: MEXER AQUI
+        #     - .:/work
+        depends_on:
+            - mysqlsrv
+
+    mysqlsrv:
+        image: mysql:5.7
+        environment:
+            MYSQL_USER: 'root'
+            MYSQL_ROOT_PASSWORD: "123456"
+            MYSQL_DATABASE: "sistematarefas"
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysql_volume:/var/lib/mysql
+        command: --disable-partition-engine-check
+
+    web:
+        container_name: "web"
+        build: ./web
+        ports:
+            - "4000:3000"
+        depends_on:
+            - backend
+        
+volumes:
+    mysql_volume:
+    
+# docker system prune --force --volumes

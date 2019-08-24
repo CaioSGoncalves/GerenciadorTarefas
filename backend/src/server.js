@@ -40,5 +40,6 @@ app.use(
 );
 app.use(routes);
 
-const PORT = process.env.PORT || 3333;
-server.listen(PORT, console.log(`Server started on port ${PORT}`));
+const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
+server.listen(PORT, HOST, console.log(`Server started on port ${PORT}`));
