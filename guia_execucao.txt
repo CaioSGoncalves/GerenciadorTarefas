@@ -1,14 +1,34 @@
+Preparação do ambiente React Native:
+    https://docs.rocketseat.dev/ambiente-react-native/introducao
+
+
 backend:
-    yarn install
-    yarn start
+    yarn install ou npm install
+    yarn start ou npm start
 
 web:
-    yarn install
-    yarn start
+    yarn install ou npm install
+    yarn start ou npm start
 
 mobile:
-    yarn install
+    yarn install ou npm install
+    yarn android-dev ou npm run android-dev
+    yarn emulator-dev ou npm run emulator-dev
+
+
+
+
+yarn react-native run-android
 
     react-native link react-native-camera
+backend e web:
+    cd GerenciadorTarefas
+    docker-compose up -d --build
 
-    yarn react-native run-android
+mobile:
+    Pre-config: https://docs.rocketseat.dev/ambiente-react-native/android/windows
+
+    cd GerenciadorTarefas/mobile: 
+    npm install
+    adb reverse tcp:4000 tcp:4000
+    npm react-native run-android

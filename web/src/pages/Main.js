@@ -1,94 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import './Main.css';
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
-import api from '../services/api';
+import "./Main.css";
+import api from "../services/api";
+import TaskList from "../components/TaskList";
 
 export default function Main() {
-    const [ tasks, setTasks ] = useState([]);
-    const [ reload, setReload ] = useState([true]);
-    const [ titulo, setTitulo ] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [reload, setReload] = useState([true]);
+  const [titulo, setTitulo] = useState([]);
 
-    useEffect(() => {
-        async function loadTasks() {
-            const response = await api.get('/tarefas', {
-                headers: {
-                    todas: true,
-                }
-            });
-            setTasks(response.data);
-            setReload(false);
+  useEffect(() => {
+    async function loadTasks() {
+      const response = await api.get("/tarefas", {
+        headers: {
+          todas: true
         }
-        loadTasks();
-    }, [reload]);
-
-    useEffect(() => {
-
-        async function handleSocket() {
-            const socket = io('http://192.168.99.100:3000');
-            socket.on('update', async () => {
-                // const response = await api.get('/tarefas');
-                // setTasks(response.data);
-                setReload(true);
-            });
-        }
-        handleSocket();
-    }, []);
-
-    async function handleCadastroTask(e) {
-        e.preventDefault();
-
-        await api.post('/tarefas', {
-            titulo,
-        });
-        alert("Tarefa criada com sucesso!")
+      });
+      setTasks(response.data);
+      setReload(false);
     }
+    loadTasks();
+  }, [reload]);
 
-    async function handleRowClick(e) {
-        const photo = e.target;
-
-        if (photo.style.height === "36px" || photo.style.height === "") {
-            photo.style.height = "288px";
-            photo.style.width = "288px";
-        } else {
-            photo.style.height = "36px";
-            photo.style.width = "36px";
-        }
+  useEffect(() => {
+    async function handleSocket() {
+      const socket = io(process.env.REACT_APP_API_HOST);
+      socket.on("update", async () => {
+        setReload(true);
+      });
     }
+    handleSocket();
+  }, []);
 
-    return (
-        <div className="main-container">
-            <div className="lista">
-                <h1>O que precisa ser feito?</h1>
-                { tasks.length > 0 ? (
-                    <ul>
-                    {tasks.map(task => (
-                        
-                        <div className="item" key={task.id}>
-                            { task.completada ?  <strong style={{textDecoration: "line-through"}}>{task.titulo}</strong> : <strong>{task.titulo}</strong>}
-                            { task.completada && 
-                                <div className="photo" style={{backgroundImage: `url(${task.image_url})`}} onClick={handleRowClick} />}                            
-                        </div>
-                    ))}
-                    </ul>
-                ) : (
-                    <div className="empty">Acabou :)</div>
-                )}
-            </div>
+  async function handleCadastroTask(e) {
+    e.preventDefault();
 
-            <div className="cadastro">
-                <h1>Cadastrar nova Tarefa</h1>
-                <form onSubmit={handleCadastroTask}>
-                    <input
-                    placeholder="Digite o titulo da Tarefa"
-                    value={titulo}
-                    onChange={e => setTitulo(e.target.value)}
-                    />
-                    <button type="submit">Cadastrar</button>
-                </form>
+    await api.post("/tarefas", {
+      titulo
+    });
+    alert("Tarefa criada com sucesso!");
+  }
 
-        </div>
-        </div>
-    );
+  return (
+    <div className="main-container">
+      <div className="tabs-container">
+        <Tabs className="tabs">
+          <TabList className="tab-list">
+            <Tab>Todos</Tab>
+            <Tab>Pendentes</Tab>
+            <Tab>Feitos</Tab>
+          </TabList>
+          <TabPanel className="tab-panel">
+            <TaskList tasks={tasks}></TaskList>
+          </TabPanel>
+          <TabPanel className="tab-panel">
+            <TaskList
+              tasks={tasks.filter(tasks => !tasks.completada)}
+            ></TaskList>
+          </TabPanel>
+          <TabPanel className="tab-panel">
+            <TaskList
+              tasks={tasks.filter(tasks => tasks.completada)}
+            ></TaskList>
+          </TabPanel>
+        </Tabs>
+      </div>
+
+      <div className="cadastro">
+        <h1>Cadastrar nova Tarefa</h1>
+        <form onSubmit={handleCadastroTask}>
+          <input
+            placeholder="Digite o titulo da Tarefa"
+            value={titulo}
+            onChange={e => setTitulo(e.target.value)}
+          />
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  );
 }
-

@@ -40,6 +40,6 @@ app.use(
 );
 app.use(routes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const HOST = '0.0.0.0';
 server.listen(PORT, HOST, console.log(`Server started on port ${PORT}`));

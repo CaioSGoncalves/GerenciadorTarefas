@@ -31,8 +31,9 @@ services:
             - "4000:3000"
         depends_on:
             - backend
+
         
 volumes:
     mysql_volume:
     
-# docker system prune --force --volumes
+docker system prune --force --volumes

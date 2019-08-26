@@ -16,6 +16,12 @@ backend:
 
     yarn add socket.io
 
+    yarn add react-native-circular-progress react-native-svg
+    yarn react-native link react-native-svg
+    
+    yarn add react-native-vector-icons
+    yarn react-native link react-native-vector-icons
+
 
     INDEX SHOW STORE UPDATE DELETE
 
@@ -55,7 +61,9 @@ mobile:
 
 yarn add socket.io-client
 
-"crypto": "^1.0.1",
+yarn add react-native-dotenv --dev
+
+http://localhost:8081/debugger-ui/
     
     
     

@@ -1,129 +1,107 @@
-body, html{
-    /* height: 100%; */
-}
-  
-body{
-    background-color: #2D547E;
+body,
+html {
 }
 
+body {
+  background-color: #2d547e;
+}
 
 .main-container {
-    padding: 50px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.main-container .lista {
-    height: 600px;
-    overflow-y: auto;
-    width: 40%;
-    
-}
-
-.main-container .lista .empty {
-    font-weight: bold;
-    color: #FFF;
-    font-size: 20;
-}
-
-.main-container .lista h1{
-    text-align: center;
-    color: #FFF;
-}
-
-.main-container .lista ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    /* flex-direction: column-reverse; */
-    padding-left: 0px;
-    align-items: center;
-}
-
-.main-container .lista .item {
-    border: 2px solid #FFF;;
-    border-radius: 4px;
-    width: 80%;
-    text-align: left;
-    margin: 4%;
-    min-height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.main-container .lista .item strong {
-    margin-left: 2%;
-    color: #FFF;
-}
-
-.main-container .lista .item .photo {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-    width: 36px;
-    height: 36px;
-    border-radius: 5px;
-    margin-right: 5px;
-    margin: 5px;
-    cursor: pointer;
+  /* padding: 20px 0; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .main-container .cadastro {
-    min-height: 100px;
-    max-height: 400px;
-    overflow-y: auto;
-    width: 40%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  min-height: 100px;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 40%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .main-container .cadastro h1 {
-    text-align: center;
-    color: #FFF;
+  text-align: center;
+  color: #fff;
 }
 
 .main-container .cadastro form {
-    width: 100%;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column; 
-    margin: 0 auto 0 auto;   
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 0 auto;
 }
 
 .main-container .cadastro form input {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    height: 48px;
-    padding: 0 20px;
-    font-size: 16px;
-    color: #000;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+  color: #000;
 }
 
-.main-container .cadastro form input::placeholder{
-    color: grey;
+.main-container .cadastro form input::placeholder {
+  color: grey;
 }
 
 .main-container .cadastro form button {
-    margin-top: 10px;
-    border: 0;
-    border-radius: 4px;
-    height: 48px;
-    font-size: 16px;
-    background: #569C75;
-    font-weight: bold;
-    color: #FFF;
-    cursor: pointer;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 4px;
+  height: 48px;
+  font-size: 16px;
+  background: #569c75;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.main-container .tabs-container {
+  display: flex;
+  width: 50%;
+}
+
+.main-container .tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.main-container .tab-list {
+  padding: 0 0 0 0;
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.main-container .tab-panel {
+  width: 100%;
+  display: flex;
+  /* height: 100%; */
+}
+
+.react-tabs__tab--selected {
+  background: #d0dde1;
+}
+
+.react-tabs__tab {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
-
-
